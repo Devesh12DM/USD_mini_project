@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IRCTC - Next Gen Mock Booking</title>
+  
+  <!-- Modern Font: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+  
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="navbar fade-in-down">
+    <div class="nav-container">
+      <div class="logo">
+        <i class="ri-train-wifi-fill icon-large"></i>
+        <span>IRCTC <span class="highlight">NextGen</span></span>
+      </div>
+      <nav class="nav-links">
+        <a href="#" class="nav-link active">Trains</a>
+        <a href="#" class="nav-link">Buses</a>
+        <a href="#" class="nav-link">Flights</a>
+        <a href="#" class="nav-link">Hotels</a>
+        <a href="#" class="nav-link">Holidays</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="btn btn-outline" id="loginBtn">Login</button>
+        <button class="btn btn-primary" id="registerBtn">Register</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content fade-in-up">
+      <h1 class="hero-title">Discover India with Ease</h1>
+      <p class="hero-subtitle">Book your journey smoothly with our modernized platform.</p>
+      
+      <!-- Booking Widget Container -->
+      <div class="booking-widget glass-panel">
+        <div class="widget-tabs" id="widgetTabs">
+          <button type="button" class="tab active" data-target="bookView"><i class="ri-ticket-2-line"></i> Book Ticket</button>
+          <button type="button" class="tab" data-target="pnrView"><i class="ri-search-eye-line"></i> PNR Status</button>
+          <button type="button" class="tab" data-target="chartsView"><i class="ri-bar-chart-box-line"></i> Charts / Vacancy</button>
+        </div>
+        
+        <form class="booking-form tab-content active-view" id="bookView">
+          <div class="form-grid">
+            
+            <!-- From Station -->
+            <div class="input-group">
+              <label for="fromStation">From</label>
+              <div class="input-wrapper">
+                <i class="ri-map-pin-line"></i>
+                <input type="text" id="fromStation" placeholder="E.g. NDLS, New Delhi" required>
+              </div>
+            </div>
+
+            <!-- Swap Button -->
+            <div class="swap-wrapper">
+              <button type="button" class="btn-swap" id="swapBtn" aria-label="Swap Stations">
+                <i class="ri-arrow-left-right-line"></i>
+              </button>
+            </div>
+
+            <!-- To Station -->
+            <div class="input-group">
+              <label for="toStation">To</label>
+              <div class="input-wrapper">
+                <i class="ri-map-pin-user-line"></i>
+                <input type="text" id="toStation" placeholder="E.g. CSTM, Mumbai" required>
+              </div>
+            </div>
+
+            <!-- Date Selection -->
+            <div class="input-group">
+              <label for="travelDate">Journey Date</label>
+              <div class="input-wrapper">
+                <i class="ri-calendar-line"></i>
+                <input type="date" id="travelDate" required>
+              </div>
+            </div>
+
+            <!-- Class Selection -->
+            <div class="input-group">
+              <label for="travelClass">Class</label>
+              <div class="input-wrapper">
+                <i class="ri-vip-crown-line"></i>
+                <select id="travelClass">
+                  <option value="All">All Classes</option>
+                  <option value="1A">AC First Class (1A)</option>
+                  <option value="2A">AC 2 Tier (2A)</option>
+                  <option value="3A">AC 3 Tier (3A)</option>
+                  <option value="SL">Sleeper (SL)</option>
+                  <option value="CC">AC Chair Car (CC)</option>
+                  <option value="2S">Second Sitting (2S)</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Quota Selection -->
+            <div class="input-group">
+              <label for="travelQuota">Quota</label>
+              <div class="input-wrapper">
+                <i class="ri-user-add-line"></i>
+                <select id="travelQuota">
+                  <option value="General">General</option>
+                  <option value="Tatkal">Tatkal</option>
+                  <option value="Ladies">Ladies</option>
+                  <option value="Premium Tatkal">Premium Tatkal</option>
+                  <option value="Senior Citizen">Senior Citizen</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Preferences -->
+          <div class="preferences">
+            <label class="checkbox-container">
+              <input type="checkbox" id="flexDate">
+              <span class="checkmark"></span>
+              Flexible With Date
+            </label>
+            <label class="checkbox-container">
+              <input type="checkbox" id="pwdConcession">
+              <span class="checkmark"></span>
+              Person With Disability Concession
+            </label>
+            <label class="checkbox-container">
+              <input type="checkbox" id="trainWithBerth">
+              <span class="checkmark"></span>
+              Train with Available Berth
+            </label>
+          </div>
+
+          <button type="submit" class="btn btn-search btn-glow">
+          </button>
+        </form>
+
+        <!-- PNR View -->
+        <form class="booking-form tab-content hidden" id="pnrView">
+          <div class="form-grid">
+             <div class="input-group" style="grid-column: 1 / -1;">
+                <label>Enter 10 digit PNR Number</label>
+                <div class="input-wrapper">
+                  <i class="ri-numbers-line"></i>
+                  <input type="text" placeholder="E.g. 1234567890" maxlength="10" required>
+                </div>
+             </div>
+          </div>
+          <button type="submit" class="btn btn-search btn-glow" style="margin-top: 1rem;">
+            Check PNR Status <i class="ri-arrow-right-line"></i>
+          </button>
+        </form>
+
+        <!-- Charts View -->
+        <form class="booking-form tab-content hidden" id="chartsView">
+           <div class="form-grid">
+             <div class="input-group" style="grid-column: span 2;">
+                <label>Train Number / Name</label>
+                <div class="input-wrapper">
+                  <i class="ri-train-line"></i>
+                  <input type="text" placeholder="E.g. 12952" required>
+                </div>
+             </div>
+             <div class="input-group" style="grid-column: span 2;">
+                <label>Boarding Station</label>
+                <div class="input-wrapper">
+                  <i class="ri-map-pin-line"></i>
+                  <input type="text" placeholder="E.g. NDLS" required>
+                </div>
+             </div>
+          </div>
+          <button type="submit" class="btn btn-search btn-glow" style="margin-top: 1rem;">
+            Get Chart Details <i class="ri-arrow-right-line"></i>
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Search Results Section (Hidden heavily by default) -->
+  <section class="results-section hidden" id="resultsSection">
+    <div class="container">
+      <h2 class="section-title">Search Results</h2>
+      <div id="resultsContainer" class="results-container">
+        <!-- JS will inject skeleton or actual mock data here -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Services / Features Section -->
+  <section class="services-section">
+    <div class="container">
+      <h2 class="section-title">IRCTC Enhanced Services</h2>
+      <div class="services-grid">
+        <div class="service-card slide-up-element">
+          <div class="icon-wrapper">
+            <i class="ri-restaurant-line"></i>
+          </div>
+          <h3>E-Catering</h3>
+          <p>Get food delivered right to your berth from top restaurants.</p>
+        </div>
+        <div class="service-card slide-up-element" style="animation-delay: 0.1s;">
+          <div class="icon-wrapper">
+            <i class="ri-suitcase-2-line"></i>
+          </div>
+          <h3>Tour Packages</h3>
+          <p>Explore India with our curated holiday packages.</p>
+        </div>
+        <div class="service-card slide-up-element" style="animation-delay: 0.2s;">
+          <div class="icon-wrapper">
+            <i class="ri-hotel-bed-line"></i>
+          </div>
+          <h3>Retiring Rooms</h3>
+          <p>Book affordable stays at railway stations.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container footer-content">
+      <div class="footer-brand">
+        <i class="ri-train-wifi-fill icon-large"></i> IRCTC NextGen Mock
+        <p class="mt-2 text-sm">A modernized conceptual design.</p>
+      </div>
+      <div class="footer-links">
+        <a href="#">About Us</a>
+        <a href="#">Terms & Conditions</a>
+        <a href="#">Privacy Policy</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Auth Modal -->
+  <div class="modal-overlay hidden" id="authModal">
+    <div class="modal-content glass-panel" style="max-width: 400px; margin: 0 auto; margin-top: 15vh; position: relative;">
+      <button class="close-btn" id="closeModalBtn" style="position: absolute; top: 1rem; right: 1rem; background: none; border: none; font-size: 1.5rem; color: var(--text-dark); cursor: pointer;"><i class="ri-close-line"></i></button>
+      <h2 id="modalTitle" style="margin-bottom: 1rem; color: var(--primary);">Login to IRCTC NextGen</h2>
+      <form class="auth-form" id="authForm" style="display: flex; flex-direction: column; gap: 1rem;">
+        <div class="input-wrapper">
+          <i class="ri-user-line" style="position: absolute; left: 14px; top: 50%; transform: translateY(-50%); font-size: 1.2rem; color: var(--primary);"></i>
+          <input type="text" placeholder="Username / Email" style="width: 100%; padding: 0.8rem 1rem 0.8rem 2.8rem; border: 1px solid #cbd5e1; border-radius: var(--radius-md);" required>
+        </div>
+        <div class="input-wrapper">
+          <i class="ri-lock-password-line" style="position: absolute; left: 14px; top: 50%; transform: translateY(-50%); font-size: 1.2rem; color: var(--primary);"></i>
+          <input type="password" placeholder="Password" style="width: 100%; padding: 0.8rem 1rem 0.8rem 2.8rem; border: 1px solid #cbd5e1; border-radius: var(--radius-md);" required>
+        </div>
+        <button type="submit" class="btn btn-primary" style="margin-top: 0.5rem; padding: 0.8rem; width: 100%;">Submit</button>
+      </form>
+    </div>
+  </div>
+  <!-- Chatbot Widget -->
+  <div class="chatbot-widget" id="chatbotWidget">
+    <button class="chatbot-toggle" id="chatbotToggle">
+      <i class="ri-robot-2-line"></i>
+    </button>
+    <div class="chatbot-container hidden" id="chatbotContainer">
+      <div class="chatbot-header">
+        <div class="chatbot-title">
+          <i class="ri-robot-2-fill"></i> Ask Disha
+        </div>
+        <button class="close-chatbot" id="closeChatbot"><i class="ri-close-line"></i></button>
+      </div>
+      <div class="chatbot-messages" id="chatbotMessages">
+        <div class="message bot-message">
+          Hi! I am Ask Disha. How can I help you today?
+        </div>
+      </div>
+      <form class="chatbot-input-form" id="chatbotForm">
+        <input type="text" id="chatbotInput" placeholder="Type a message..." required autocomplete="off">
+        <button type="submit"><i class="ri-send-plane-fill"></i></button>
+      </form>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
